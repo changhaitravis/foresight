@@ -75,9 +75,9 @@
     </build>
 
     <properties>
-        <jira.version>6.1.5</jira.version>
-        <amps.version>4.2.10</amps.version>
+        <jira.version>6.4.4</jira.version>
+	<amps.version>6.0.6 <!--4.2.10 --></amps.version>
         <plugin.testrunner.version>1.1.2</plugin.testrunner.version>
-		<testkit.version>5.2.26</testkit.version>
+	<testkit.version>5.2.26</testkit.version>
     </properties>
 </project>

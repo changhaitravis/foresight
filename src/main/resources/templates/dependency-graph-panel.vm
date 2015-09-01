@@ -2,9 +2,9 @@
 	<form id="issue-dependency-viewer-form">
 		<div>
 			<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include_dependencies")</label>
-			<input type="checkbox" id="includeOutward" class="foresight-input" name="includeOutward" value="includeOutward">
+			<input type="checkbox" id="includeOutward" class="foresight-input" name="includeOutward" value="includeOutward" checked>
 			<label for="includeOutward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.outward")</label>
-			<input type="checkbox" id="includeInward" class="foresight-input" name="includeInward" value="includeInward">
+			<input type="checkbox" id="includeInward" class="foresight-input" name="includeInward" value="includeInward" checked>
 			<label for="includeInward">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.inward")</label>
 		</div>
 		<div>

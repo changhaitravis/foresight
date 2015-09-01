@@ -26,7 +26,7 @@
 	</servlet>
 	
 	<servlet name="Foresight Settings Servlet" 
-		key="foresigh-settings-servlet"
+		key="foresight-settings-servlet"
 		class="ca.appbox.jira.plugins.issuedependencyviewer.servlets.ForesightSettingsServlet">
 		<url-pattern>/foresight-settings</url-pattern>
 	</servlet>
