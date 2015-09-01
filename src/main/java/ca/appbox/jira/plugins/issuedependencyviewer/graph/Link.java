@@ -44,6 +44,16 @@ public final class Link {
 		return inward;
 	}
 	
+	public String getName() {
+		String name = "";
+		
+		if (!this.correspondingLink.isSystemLink()) {
+			name = this.correspondingLink.getIssueLinkType().getName();
+		}
+		
+		return name;
+	}
+	
 	public boolean isSystemLink() {
 		return this.correspondingLink.isSystemLink();
 	}

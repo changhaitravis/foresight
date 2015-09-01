@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ca.appbox.jira.plugins.issuedependencyviewer.graph.GraphBuilder;
-import ca.appbox.jira.plugins.issuedependencyviewer.servlets.response.GraphResponseBuilder;
+//import ca.appbox.jira.plugins.issuedependencyviewer.graph.GraphBuilder;
+//import ca.appbox.jira.plugins.issuedependencyviewer.servlets.response.GraphResponseBuilder;
 import ca.appbox.jira.plugins.issuedependencyviewer.servlets.response.SettingsResponseBuilder;
 import ca.appbox.jira.plugins.issuedependencyviewer.settings.ForesightSettings;
 

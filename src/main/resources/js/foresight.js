@@ -14,6 +14,9 @@ function update_description_types() {
 		case 'none':
 			linkLabel = "";
 			break;
+		case 'name':
+			linkLabel = data.name;
+			break;
 		case 'inward':
 			linkLabel = data.inward;
 			break;

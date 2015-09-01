@@ -67,8 +67,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>3.3</source>
+                    <target>3.3</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -76,7 +76,7 @@
 
     <properties>
         <jira.version>6.4.4</jira.version>
-	<amps.version>6.0.6 <!--4.2.10 --></amps.version>
+	<amps.version>6.0.6</amps.version>
         <plugin.testrunner.version>1.1.2</plugin.testrunner.version>
 	<testkit.version>5.2.26</testkit.version>
     </properties>

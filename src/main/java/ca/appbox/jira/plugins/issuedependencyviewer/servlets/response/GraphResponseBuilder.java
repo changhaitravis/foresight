@@ -69,6 +69,8 @@ public class GraphResponseBuilder {
 				.append(nodeIndex.get(links.get(i).getTarget()))
 				.append(",\"type\":\"")
 				.append("resolved")
+				.append("\",\"name\":\"")
+				.append(links.get(i).getName())
 				.append("\",\"outward\":\"")
 				.append(links.get(i).getOutward())
 				.append("\",\"inward\":\"")
