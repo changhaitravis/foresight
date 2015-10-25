@@ -128,7 +128,14 @@ function show_graph() {
 
 		var circle = svg.append("svg:g").selectAll("circle")
 		    .data(force.nodes())
-		    .enter().append("svg:circle")
+		    .enter()
+		    
+		    .append("svg:a") // http://stackoverflow.com/questions/13728513/how-to-include-links-in-a-d3-visualisations-text-element
+			.attr("xlink:href", function(d){
+				return window.contextPath + "/browse/" + d.name;
+			})
+		    
+		    .append("svg:circle")
 		    .attr("class", "foresight-circle")
 		    .attr("fill", function(data) {
 		    	if (issue_id == data.key) {
@@ -141,7 +148,9 @@ function show_graph() {
 		    .attr("r", 7)
 		    .call(node_drag);
 		
-		circle.append("svg:title").text(function(d) { return d.name + ": " +d.summary; })
+		circle
+		.append("svg:title")
+		.text(function(d) { return d.name + ": " +d.summary; });
 
 		var labels = svg.selectAll('text')
 		    .data(graph.links)

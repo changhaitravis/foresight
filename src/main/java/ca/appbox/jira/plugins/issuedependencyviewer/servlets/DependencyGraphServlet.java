@@ -49,7 +49,6 @@ public final class DependencyGraphServlet extends HttpServlet {
 		boolean considerInward = parseBooleanParam(INCLUDE_INWARD_PARAM_KEY, req.getParameterMap());
 		boolean considerOutward = parseBooleanParam(INCLUDE_OUTWARD_PARAM_KEY, req.getParameterMap());
 		boolean includeSystemLinks = parseBooleanParam(INCLUDE_SYSTEM_LINKS, req.getParameterMap());
-
 		
 		// FIXME : further validations needed.
 		if (currentIssueKeyParameter != null || currentProjectKeyParameter != null) {
