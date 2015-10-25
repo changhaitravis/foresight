@@ -1,7 +1,10 @@
 package ca.appbox.jira.plugins.issuedependencyviewer.graph;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.ofbiz.core.entity.GenericEntityException;
 
 import com.atlassian.jira.issue.IssueManager;
 import com.atlassian.jira.issue.MutableIssue;
@@ -37,6 +40,36 @@ public final class GraphBuilder {
 		MutableIssue issueObject = issueManager.getIssueObject(currentIssueId);
 		
 		addAdjacentNodesToGraph(graph, issueObject.getId());
+		
+		return graph;
+	}
+	
+	//Work In Progress
+	/**
+	 * @param currentProjectID
+	 * @return Graph
+	 * @throws GenericEntityException
+	 */
+	public Graph buildGraphForProject(Long currentProjectID){
+		
+		final Graph graph = new Graph();
+		
+		Collection<Long> IssueIdsInProject = null;
+		
+		try {
+			IssueIdsInProject = issueManager.getIssueIdsForProject(currentProjectID);
+		} catch (GenericEntityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (Long IssueId : IssueIdsInProject){
+			
+			MutableIssue issueObject = issueManager.getIssueObject(IssueId);
+			
+			addAdjacentNodesToGraph(graph, issueObject.getId());
+			
+		}
 		
 		return graph;
 	}

@@ -33,12 +33,14 @@ function show_graph() {
 	update_plugin_settings();
 	  
 	var issue_id=AJS.$("input[name=id]").val();
+	var project_id=AJS.$("input[name=projectId]").val();
 	var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
 	var includeOutwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").is(':checked');
 	var includeSystemLinks=AJS.$("#issue-dependency-viewer-form input[name=includeSystemLinks]").is(':checked');
 	
 	AJS.$.get(contextPath + "/plugins/servlet/foresight-dependency-graph" 
 			+ "?currentIssueId="+issue_id
+			+ "&currentProjectId="+project_id
 			+ "&includeOutward="+includeOutwardLinks
 			+ "&includeInward="+includeInwardLinks 
 			+ "&includeSystemLinks="+includeSystemLinks,function(data) {
