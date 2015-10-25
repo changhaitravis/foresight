@@ -31,7 +31,7 @@ function update_description_types() {
 function show_graph() {
 	
 	update_plugin_settings();
-	  
+	
 	var issue_id=AJS.$("input[name=id]").val();
 	var project_id=AJS.$("input[name=projectId]").val();
 	var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
@@ -45,6 +45,13 @@ function show_graph() {
 			+ "&includeInward="+includeInwardLinks 
 			+ "&includeSystemLinks="+includeSystemLinks,function(data) {
 		
+		var graph = JSON.parse(data);
+		
+		var height = 400;
+		var heightGrowth = (graph.nodes.length + graph.links.length) * 10;
+		
+		height = height + heightGrowth;
+		
 		// clean up old svg object
 		d3.select("#issue-dependency-viewer-graph").remove();
 		var container = d3.select('#issue-dependency-viewer-graph-container');
@@ -52,9 +59,9 @@ function show_graph() {
 		var svg = container.append('svg:svg')
 			.attr("id", "issue-dependency-viewer-graph")
 			.attr("width", 1000)
-			.attr("height", 500);
+			.attr("height", height);
 		  
-		var graph = JSON.parse(data);
+		
 			
 		var links = graph.links;
 		var nodes = graph.nodes;
@@ -69,7 +76,7 @@ function show_graph() {
 		var force = d3.layout.force()
 		    .nodes(nodes)
 		    .links(links)
-		    .size([900, 500])
+		    .size([1000, height])
 		    .linkDistance(120)
 		    .charge(-150)
 		    .gravity(.05)
@@ -132,7 +139,7 @@ function show_graph() {
 		    
 		    .append("svg:a") // http://stackoverflow.com/questions/13728513/how-to-include-links-in-a-d3-visualisations-text-element
 			.attr("xlink:href", function(d){
-				return window.contextPath + "/browse/" + d.name;
+				return contextPath + "/browse/" + d.name;
 			})
 		    
 		    .append("svg:circle")

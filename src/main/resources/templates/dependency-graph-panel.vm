@@ -9,7 +9,7 @@
 		</div>
 		<div>
 			<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.include.system.links")</label>
-			<input type="checkbox" id="includeSystemLinks" class="foresight-input" name="includeSystemLinks" value="includeSystemLinks">
+			<input type="checkbox" id="includeSystemLinks" class="foresight-input" name="includeSystemLinks" value="includeSystemLinks" checked>
 		</div>
 		<div>
 			<label class="foresight-form-label">$i18n.getText("ca.appbox.jira.plugins.issuedependencyviewer.show_link_descriptions")</label>
