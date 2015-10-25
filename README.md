@@ -17,3 +17,7 @@ The following features should bring it to parity with Vivid Trace
 - Click on Node to go to Issue
 - Remove a lot of the controls for Enabling naming on Edges and Inward vs. Outward, and just have there be a default that shows everything.
 
+## Version Support
+Because of when the fork was made, I've removed support for JIRA 4.x.x and JIRA 5.x.x
+Currently the build is targetting JIRA 6.4, but I'm open to keeping it compatible with the entire JIRA 6.x range.
+
