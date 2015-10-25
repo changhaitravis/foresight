@@ -140,6 +140,8 @@ function show_graph() {
 		    	})
 		    .attr("r", 7)
 		    .call(node_drag);
+		
+		circle.append("svg:title").text(function(d) { return d.name + ": " +d.summary; })
 
 		var labels = svg.selectAll('text')
 		    .data(graph.links)
