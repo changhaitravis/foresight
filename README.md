@@ -14,6 +14,7 @@ The following features should bring it to parity with Vivid Trace
 - Hover mouse over node to view title of issue
 - Click on Node to go to Issue
 - Remove a lot of the controls for Enabling naming on Edges and Inward vs. Outward, and just have there be a default that shows everything.
+- Perhaps the D3 Circles should be large enough to encompass the Issue name + key?
 
 ## Version Support
 Because of when the fork was made, I've removed support for JIRA 4.x.x and JIRA 5.x.x
