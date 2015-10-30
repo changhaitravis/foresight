@@ -17,7 +17,7 @@ The following features should bring it to parity with Vivid Trace
 - Perhaps the D3 Circles should be large enough to encompass the Issue name + key?
 - Escape/Sanitize the Summaries being sent to D3 as JSON.
 - Legend
-- Hide Completed 'Sets' Switch
+- Hide (or maybe 'grey out') Completed 'Sets' Switch
 
 ## Version Support
 Because of when the fork was made, I've removed support for JIRA 4.x.x and JIRA 5.x.x
