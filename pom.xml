@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.appbox.jira</groupId>
     <artifactId>foresight</artifactId>
-    <version>0.8.1-jira6</version>
+    <version>0.9.0-jira6</version>
 
     <organization>
         <name>Solutions Appbox inc.</name>
@@ -24,6 +24,12 @@
             <artifactId>jira-api</artifactId>
             <version>${jira.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.3</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -45,11 +51,6 @@
             <version>1.1.1</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.2.2-atlassian-1</version>
-        </dependency>
     </dependencies>
 
  	<build>
@@ -70,6 +71,7 @@
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
+                <version>3.3</version>
             </plugin>
         </plugins>
     </build>

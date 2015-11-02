@@ -48,7 +48,7 @@ function show_graph() {
 		var graph = JSON.parse(data);
 		
 		var height = 400;
-		var heightGrowth = (graph.nodes.length + graph.links.length) * 10;
+		var heightGrowth = (graph.nodes.length + graph.links.length) * 5;
 		
 		height = height + heightGrowth;
 		
@@ -143,7 +143,8 @@ function show_graph() {
 			})
 		    
 		    .append("svg:circle")
-		    .attr("class", "foresight-circle")
+		    .attr("class", function(d) { if (d.status == 'Resolved' || d.status == 'Closed' || d.status == 'Done') { return "foresight-circle foresight-resolved" }
+		    else {return "foresight-circle"} })
 		    .attr("fill", function(data) {
 		    	if (issue_id == data.key) {
 		    		return "#4552E6";
@@ -180,7 +181,7 @@ function show_graph() {
 		    .attr("x", 8)
 		    .attr("y", ".31em")
 		    .text(function(d) { return d.name; })
-		    .attr("class", function(d) { if (d.status == 'Resolved' || d.status == 'Closed') { return "foresight-text-striked" } })
+		    .attr("class", function(d) { if (d.status == 'Resolved' || d.status == 'Closed' || d.status == 'Done') { return "foresight-text-striked foresight-resolved" } })
 			.append("svg:title")
 			.text(function(d) { return d.summary; });
 		
@@ -191,7 +192,7 @@ function show_graph() {
 		    .attr("y2", 0)
 		    .attr("style", function(d) {
 		    	//var associatedLabel = this.parentNode.firstChild
-		    	if (d.status == 'Resolved' || d.status == 'Closed') {
+		    	if (d.status == 'Resolved' || d.status == 'Closed' || d.status == 'Done') {
 		    		return "stroke:rgb(0,0,0);stroke-width:1"
 		    	} else {
 		    		return "display:none"

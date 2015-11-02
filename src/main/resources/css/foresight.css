@@ -35,6 +35,10 @@
 	color: #aaaaaa;
 }
 
+.foresight-resolved {
+	opacity: 0.5;
+}
+
 .foresight-input {
   margin-top: 4px;
   margin-bottom: 4px;
