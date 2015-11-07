@@ -3,6 +3,7 @@ var pluginSettings;
 function update_plugin_settings() {
 	AJS.$.get(contextPath + "/plugins/servlet/foresight-settings", function(data) {
 		pluginSettings = JSON.parse(data);
+		show_legend();
 	});
 }
 
@@ -44,6 +45,12 @@ function show_graph() {
 			+ "&includeOutward="+includeOutwardLinks
 			+ "&includeInward="+includeInwardLinks 
 			+ "&includeSystemLinks="+includeSystemLinks,function(data) {
+		
+		var thisColor = "#4552E6";
+		
+		if(issue_id !== undefined){
+			pluginSettings.nodecolors.This = thisColor;
+		}
 		
 		var graph = JSON.parse(data);
 		
@@ -146,14 +153,20 @@ function show_graph() {
 		    .attr("class", function(d) { if (d.status == 'Resolved' || d.status == 'Closed' || d.status == 'Done') { return "foresight-circle foresight-resolved" }
 		    else {return "foresight-circle"} })
 		    .attr("fill", function(data) {
-		    	if (issue_id == data.key) {
-		    		return "#4552E6";
-		    	}
-		    	else {
+//		    	if (issue_id == data.key) {
+//		    		return pluginSettings.nodecolors.This;
+//		    	}
+//		    	else {
 		    		return pluginSettings.nodecolors[data.type];
-		    	}
+//		    	}
 		    	})
-		    .attr("r", 7)
+		    .attr("r", function(d){
+		    	if (issue_id == d.key) {
+	    			return 14;
+	    		}else{
+	    			return 7;
+	    		}
+		    })
 		    .call(node_drag);
 		
 		circle
@@ -180,7 +193,13 @@ function show_graph() {
 		text.append("svg:text")
 		    .attr("x", 8)
 		    .attr("y", ".31em")
-		    .text(function(d) { return d.name; })
+		    .text(function(d) { 
+		    	if (issue_id == d.key) {
+		    		return null;
+		    	}else{
+		    		return d.name; 
+		    	}
+		    })
 		    .attr("class", function(d) { if (d.status == 'Resolved' || d.status == 'Closed' || d.status == 'Done') { return "foresight-text-striked foresight-resolved" } })
 			.append("svg:title")
 			.text(function(d) { return d.summary; });
@@ -223,6 +242,25 @@ function show_graph() {
 	        .attr("y", function(d) { return (d.source.y + d.target.y) / 2; }) 
 		}
   });
+}
+
+function show_legend(){
+	//draw legend
+	var canvas = document.getElementById("foresight-legend");
+	var ctx = canvas.getContext("2d");
+	ctx.lineWidth = 4;
+	ctx.strokeStyle = 'black';
+	ctx.font="18px Arial";
+	var startX = 10, startY = 25;
+	for(var node in pluginSettings.nodecolors){
+	    ctx.fillStyle = pluginSettings.nodecolors[node];
+		ctx.fillRect(startX, startY, 75, 50);
+	    ctx.strokeRect(startX, startY, 75, 50);
+	    ctx.fillStyle = "#000";
+	    ctx.fillText(node, startX, 100);
+	    //ctx.fill();
+	   startX += 125;
+	}
 }
 
 AJS.$(document).ready(function() {

@@ -22,6 +22,7 @@
 		</div>
 	</form>
 	<div id="issue-dependency-viewer-graph-container"></div>
+	<canvas id="foresight-legend" width="848" height="200"></canvas>
 </div>
 
 <script>

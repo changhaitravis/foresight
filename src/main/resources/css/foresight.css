@@ -3,6 +3,13 @@
   width:1000px;
 }
 
+#foresight canvas#foresight-legend {
+	clear:both;
+	margin: 0 auto;
+	height: 200px;
+	width: 848px;
+}
+
 .foresight-path-link {
   fill: none;
   stroke: #666;
