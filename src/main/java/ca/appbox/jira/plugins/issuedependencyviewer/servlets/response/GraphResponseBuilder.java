@@ -1,8 +1,6 @@
 package ca.appbox.jira.plugins.issuedependencyviewer.servlets.response;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Graph;
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Link;

@@ -250,16 +250,22 @@ function show_legend(){
 	var ctx = canvas.getContext("2d");
 	ctx.lineWidth = 4;
 	ctx.strokeStyle = 'black';
-	ctx.font="18px Arial";
-	var startX = 10, startY = 25;
+	ctx.font="14px Arial";
+	var startX = 10, startY = 10, count = 0;
 	for(var node in pluginSettings.nodecolors){
+        count++;
 	    ctx.fillStyle = pluginSettings.nodecolors[node];
 		ctx.fillRect(startX, startY, 75, 50);
 	    ctx.strokeRect(startX, startY, 75, 50);
 	    ctx.fillStyle = "#000";
-	    ctx.fillText(node, startX, 100);
+	    ctx.fillText(node, startX, startY + 70);
 	    //ctx.fill();
 	   startX += 125;
+	  //Do a line break every 7
+	  if(count%7 == 0){
+	      startY += 100;
+	      startX = 10;
+	  }
 	}
 }
 
