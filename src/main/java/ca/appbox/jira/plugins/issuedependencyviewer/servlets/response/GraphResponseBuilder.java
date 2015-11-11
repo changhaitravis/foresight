@@ -1,12 +1,11 @@
 package ca.appbox.jira.plugins.issuedependencyviewer.servlets.response;
 
 import java.util.List;
-
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Graph;
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Link;
 import ca.appbox.jira.plugins.issuedependencyviewer.graph.Node;
-
 import com.google.gson.Gson;
+
 
 /**
  * Builds the json representation of a graph.

@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.appbox.jira</groupId>
     <artifactId>foresight</artifactId>
     <version>0.9.1-jira6</version>
-
     <organization>
         <name>Solutions Appbox inc.</name>
         <url>http://www.appbox.ca/</url>
     </organization>
-
     <name>Foresight</name>
     <description>Issue dependency visualization plugin for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
-
-     <dependencies>
+    <dependencies>
         <dependency>
             <groupId>com.atlassian.jira</groupId>
             <artifactId>jira-api</artifactId>
@@ -37,7 +31,6 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-
         <!-- WIRED TEST RUNNER DEPENDENCIES -->
         <dependency>
             <groupId>com.atlassian.plugins</groupId>
@@ -52,8 +45,7 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
- 	<build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
@@ -75,11 +67,10 @@
             </plugin>
         </plugins>
     </build>
-
     <properties>
         <jira.version>6.4.4</jira.version>
-	<amps.version>5.1.16</amps.version>
+        <amps.version>6.1.2</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
-	<testkit.version>6.3.11</testkit.version>
+        <testkit.version>6.3.11</testkit.version>
     </properties>
 </project>
