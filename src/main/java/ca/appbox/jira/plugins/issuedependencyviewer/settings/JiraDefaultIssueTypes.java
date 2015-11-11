@@ -14,6 +14,7 @@ public enum JiraDefaultIssueTypes {
 	BUG("Bug", "#FF0000"), 
 	EPIC("Epic", "#FFA500"),
 	STORY("Story", "#FFA500"),
+	TEST("Test", "#B2FFFF"), //Zephyr Add-On issue type?
 	UNKNOWN("Unknown", "#CCCCCC");
 
 	private String defaultJiraName;
