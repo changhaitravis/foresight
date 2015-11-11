@@ -18,6 +18,7 @@ The following features should bring it to parity with Vivid Trace
 - Escape/Sanitize the Summaries being sent to D3 as JSON.
 - Legend
 - Hide (or maybe 'grey out') Completed 'Sets' Switch
+- User Configuration JIRA Default Issue Type colors.
 
 ## Version Support
 Because of when the fork was made, I've removed support for JIRA 4.x.x and JIRA 5.x.x
