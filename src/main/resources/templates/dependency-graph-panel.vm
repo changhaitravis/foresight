@@ -26,11 +26,15 @@
 </div>
 
 <script>
-
-AJS.$(document).ready(function() {
-
-	show_graph();
-
+AJS.toInit(function(){
+	AJS.$(document).ready(function(){
+		if(JIRA !== undefined && JIRA.ViewIssueTabs !== undefined){
+			JIRA.ViewIssueTabs.onTabReady(function() {
+				show_graph();
+			});
+		}
+		show_graph();
+	});
 });
 
 

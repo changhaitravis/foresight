@@ -36,7 +36,6 @@ public enum JiraDefaultIssueTypes {
 				break;
 			}
 		}
-		
 		return matchingValue;
 	}
 

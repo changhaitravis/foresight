@@ -9,6 +9,7 @@ import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.plugin.issuetabpanel.AbstractIssueTabPanel;
 import com.atlassian.jira.plugin.issuetabpanel.IssueAction;
 import com.atlassian.jira.plugin.issuetabpanel.IssueTabPanelModuleDescriptor;
+//import com.atlassian.jira.project.browse.BrowseContext;
 
 /**
  * Manages the issue tab panel for viewing dependencies between issues.
@@ -27,7 +28,7 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 
 	@Override
 	public List<IssueAction> getActions(Issue currentIssue, User currentUser) {
-		
+		final Issue issue = currentIssue;
 		final List<IssueAction> actions = new ArrayList<IssueAction>();
 		actions.add(new IssueAction() {
 			
@@ -43,7 +44,8 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 			
 			@Override
 			public String getHtml() {
-				return issueTabPanelModuleDescriptor.getHtml(ISSUE_TAB_PANEL_VELOCITY_TEMPLATE);
+				String issueHtml = "<input class=\"hidden\" name=\"issueId\" value=\"" + issue.getId() + "\"/>";
+				return issueHtml + issueTabPanelModuleDescriptor.getHtml(ISSUE_TAB_PANEL_VELOCITY_TEMPLATE);
 			}
 		});
 		return actions;

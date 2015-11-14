@@ -33,7 +33,7 @@ function show_graph() {
 	
 	update_plugin_settings();
 	
-	var issue_id=AJS.$("input[name=id]").val();
+	var issue_id=AJS.$("input[name=issueId]").val();
 	var project_id=AJS.$("input[name=projectId]").val();
 	var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
 	var includeOutwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").is(':checked');
@@ -45,6 +45,10 @@ function show_graph() {
 			+ "&includeOutward="+includeOutwardLinks
 			+ "&includeInward="+includeInwardLinks 
 			+ "&includeSystemLinks="+includeSystemLinks,function(data) {
+		
+		if(data == undefined || data == ""){
+			return;
+		}
 		
 		var thisColor = "#4552E6";
 		
@@ -268,9 +272,20 @@ function show_legend(){
 	  }
 	}
 }
+AJS.toInit(function(){
+	AJS.$(document).ready(function(){
+		if(JIRA !== undefined && JIRA.ViewIssueTabs !== undefined){
+			JIRA.ViewIssueTabs.onTabReady(function() {
+				foresight_show()
+			});
+		}//else{
+			foresight_show()
+//		}
+		
+	});
+});
 
-AJS.$(document).ready(function() {
-	
+function foresight_show(){
 	// on change functions of the show inward/outward checkboxes
 	AJS.$("#issue-dependency-viewer-form input[name=includeInward]").change(function(){
 		show_graph();
@@ -286,4 +301,4 @@ AJS.$(document).ready(function() {
 	AJS.$("#dependencyDescriptionTypes").change(function(){
 		update_description_types();
 	});
-});
+}
