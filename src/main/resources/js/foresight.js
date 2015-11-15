@@ -50,12 +50,6 @@ function show_graph() {
 			return;
 		}
 		
-		var thisColor = "#4552E6";
-		
-		if(issue_id !== undefined){
-			pluginSettings.nodecolors.This = thisColor;
-		}
-		
 		var graph = JSON.parse(data);
 		
 		var height = 400;
@@ -130,6 +124,19 @@ function show_graph() {
 		    .attr("orient", "auto")
 		  .append("svg:path")
 		    .attr("d", "M0,-5L10,0L0,5");
+		
+		svg.append("svg:defs").selectAll("marker")
+		    .data(["this"])
+		  .enter().append("svg:marker")
+		    .attr("id", String)
+		    .attr("viewBox", "0 -5 10 10")
+		    .attr("refX", 18)
+		    .attr("refY", -2)
+		    .attr("markerWidth", 9)
+		    .attr("markerHeight", 9)
+		    .attr("orient", "auto")
+		  .append("svg:path")
+		    .attr("d", "M0,-5L10,0L0,5");
 
 		var path = svg.append("svg:g").selectAll("path")
 	    	.data(force.links())
@@ -142,7 +149,15 @@ function show_graph() {
 	        		return "foresight-path-link";
 	        	}
 	        })
-	        .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
+	        .attr("marker-end", function(d) { 
+	        	console.log("d", d);
+	        	console.log("graph", graph);
+	        	if(issue_id == d.target.key){
+	        		return "url(#this)";
+	        	}else{
+	        		return "url(#" + d.type + ")"; 
+	        	}
+	        });
 
 		var circle = svg.append("svg:g").selectAll("circle")
 		    .data(force.nodes())
@@ -165,6 +180,7 @@ function show_graph() {
 //		    	}
 		    	})
 		    .attr("r", function(d){
+		    	//Make the circle bigger if the it's the issue whose browse context it is.
 		    	if (issue_id == d.key) {
 	    			return 14;
 	    		}else{
