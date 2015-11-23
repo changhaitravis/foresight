@@ -320,12 +320,12 @@ AJS.toInit(function(){
 		  //project tab
 		    viewType = 'projectTab';
 		    AJS.$('input#includeOutward, input#includeInward').parent().hide();
-		    foresight_show()
+		    foresight_show();
 		  }
 		}else if(JIRA.Issue !== undefined){
 		  //issue view
 		    viewType = 'issue';
-		    foresight_show()
+		    foresight_show();
 		}
 		
 	});
