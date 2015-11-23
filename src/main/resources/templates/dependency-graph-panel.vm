@@ -24,18 +24,3 @@
 	<div id="issue-dependency-viewer-graph-container"></div>
 	<canvas id="foresight-legend" width="848" height="200"></canvas>
 </div>
-
-<script>
-AJS.toInit(function(){
-	AJS.$(document).ready(function(){
-		if(JIRA !== undefined && JIRA.ViewIssueTabs !== undefined){
-			JIRA.ViewIssueTabs.onTabReady(function() {
-				show_graph();
-			});
-		}
-		show_graph();
-	});
-});
-
-
-</script>

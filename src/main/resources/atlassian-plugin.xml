@@ -36,6 +36,7 @@
 		class="ca.appbox.jira.plugins.issuedependencyviewer.issuetabpanels.IssueDependencyTabPanel">
 		<label key="ca.appbox.jira.plugins.issuedependencyviewer.issue_tab_title" />
 		<resource type="velocity" name="dependency-graph-panel.vm" location="/templates/dependency-graph-panel.vm" />
+		<supports-ajax-load>
 	</issue-tabpanel>
 	
 	<project-tabpanel name="Foresight Dependency Viewer Tab" key="foresight-dependency-graph-project-panel"

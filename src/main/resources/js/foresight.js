@@ -1,10 +1,14 @@
 var pluginSettings;
+var viewType;
 
-function update_plugin_settings() {
+function init_plugin_settings() {
 	AJS.$.get(contextPath + "/plugins/servlet/foresight-settings", function(data) {
 		pluginSettings = JSON.parse(data);
 		show_legend();
-	});
+	})
+// 	.fail(function(){
+// 	  pluginSettings = null; //TODO Graph failed to load error msg
+// 	});
 }
 
 function update_description_types() {
@@ -31,10 +35,20 @@ function update_description_types() {
 
 function show_graph() {
 	
-	update_plugin_settings();
-	
-	var issue_id=AJS.$("input[name=issueId]").val();
-	var project_id=AJS.$("input[name=projectId]").val();
+	var issue_id, project_id;
+	switch (viewType){
+	  case 'issueNav':
+	      issue_id = JIRA.API.IssueSearch.getActiveIssueId();
+	      break;
+	  case 'projectTab':
+	      project_id = JIRA.API.Projects.getCurrentProjectId();
+	      break;
+	  case 'issue':
+	      issue_id = JIRA.Issue.getIssueId();
+	      break;
+	}
+	//var project_id=AJS.$("input[name=projectId]").val();
+	//var issue_id=AJS.$("input[name=issueId]").val();
 	var includeInwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeInward]").is(':checked');
 	var includeOutwardLinks=AJS.$("#issue-dependency-viewer-form input[name=includeOutward]").is(':checked');
 	var includeSystemLinks=AJS.$("#issue-dependency-viewer-form input[name=includeSystemLinks]").is(':checked');
@@ -150,8 +164,6 @@ function show_graph() {
 	        	}
 	        })
 	        .attr("marker-end", function(d) { 
-	        	console.log("d", d);
-	        	console.log("graph", graph);
 	        	if(issue_id == d.target.key){
 	        		return "url(#this)";
 	        	}else{
@@ -268,6 +280,7 @@ function show_legend(){
 	//draw legend
 	var canvas = document.getElementById("foresight-legend");
 	var ctx = canvas.getContext("2d");
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.lineWidth = 4;
 	ctx.strokeStyle = 'black';
 	ctx.font="14px Arial";
@@ -288,20 +301,46 @@ function show_legend(){
 	  }
 	}
 }
+
 AJS.toInit(function(){
 	AJS.$(document).ready(function(){
-		if(JIRA !== undefined && JIRA.ViewIssueTabs !== undefined){
-			JIRA.ViewIssueTabs.onTabReady(function() {
-				foresight_show()
+	  //TODO Better way of determining viewType
+		if(JIRA.API !== undefined){
+		  if(JIRA.API.IssueSearch !== undefined && JIRA.ViewIssueTabs !== undefined){
+		    //issue navigator
+		  viewType = 'issueNav';
+		  //JIRA.ViewIssueTabs.onTabReady(function() {
+		  JIRA.ViewIssueTabs.onTabReady(function() {
+			      //run foresight_show if this is the first time loading an issue, or loading a new issue.
+			    if(AJS.$('div#foresight, canvas#foresight-legend').length == 2){
+				    foresight_show();
+			      }
 			});
-		}//else{
-			foresight_show()
-//		}
+		  }else if(JIRA.API.Projects !== undefined){
+		  //project tab
+		    viewType = 'projectTab';
+		    AJS.$('input#includeOutward, input#includeInward').parent().hide();
+		    foresight_show()
+		  }
+		}else if(JIRA.Issue !== undefined){
+		  //issue view
+		    viewType = 'issue';
+		    foresight_show()
+		}
 		
 	});
 });
 
 function foresight_show(){
+  
+	if(!pluginSettings){
+	  init_plugin_settings();
+	}else{
+	  show_legend();
+	}
+
+	show_graph();
+	
 	// on change functions of the show inward/outward checkboxes
 	AJS.$("#issue-dependency-viewer-form input[name=includeInward]").change(function(){
 		show_graph();
