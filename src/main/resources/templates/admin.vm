@@ -14,7 +14,7 @@
         </div>
         <div class="field-group">
              <label for="color">Color:</label>
-             <input type="text" id="color" name="color" class="text" value="$context[$issueType]"/>
+             <input type="text" id="color" name="color" class="text" value="$context.get($issueType)"/>
         </div>
         
     #end

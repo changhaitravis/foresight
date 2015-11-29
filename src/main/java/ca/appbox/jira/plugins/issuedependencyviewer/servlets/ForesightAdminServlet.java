@@ -73,11 +73,13 @@ public class ForesightAdminServlet extends HttpServlet {
 				context.put(currentIssueTypeName, pluginSettings.get(PLUGIN_STORAGE_KEY + "." + currentIssueTypeName));
 			}
 		    
+			Map<String, Object> VContext = Maps.newHashMap();
+			VContext.put("context", context);
 			
 			//End Map objects
 		    
 		    response.setContentType("text/html;charset=utf-8");
-		    renderer.render("admin.vm", response.getWriter());
+		    renderer.render("templates/admin.vm", VContext , response.getWriter());
 	  }
 	  
 	  @Override
