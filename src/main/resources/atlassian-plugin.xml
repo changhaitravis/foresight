@@ -22,10 +22,13 @@
 	<web-item key="jira-foresight-admin" name="XProduct Admin" section="system.admin/globalsettings" weight="10" application="jira">
 	  <description>Link to JIRA Foresight admin page.</description> 
 	  <label key="ca.appbox.jira.plugins.issuedependencyviewer.admin_title" /> 
-	  <link linkId="foresight-admin-link">/foresight-admin</link> 
+	  <link linkId="foresight-admin-link">/plugins/servlet/foresight-admin</link> 
 	</web-item>
 
 	<component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
+	<component-import key="userManager" interface="com.atlassian.sal.api.user.UserManager" />
+	<component-import key="loginUriProvider" interface="com.atlassian.sal.api.auth.LoginUriProvider" />
+	<component-import key="renderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer" />
 
 	<servlet name="Foresight Dependency Graph Servlet" 
 		key="foresight-graph-servlet"

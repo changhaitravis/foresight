@@ -24,12 +24,18 @@
 		  <artifactId>atlassian-template-renderer-api</artifactId>
 		  <version>3.0.0</version>
 		  <scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>14.0.1</version>
-		</dependency>
+	</dependency>
+	<dependency>
+	  <groupId>com.atlassian.sal</groupId>
+	  <artifactId>sal-api</artifactId>
+	  <version>3.0.0</version>
+	  <scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>14.0.1</version>
+	</dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -66,6 +72,9 @@
                 <configuration>
                     <productVersion>${jira.version}</productVersion>
                     <productDataVersion>${jira.version}</productDataVersion>
+                    <systemPropertyVariables>
+					    <fastdev.mvn.command>atlas-mvn</fastdev.mvn.command>
+					</systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>

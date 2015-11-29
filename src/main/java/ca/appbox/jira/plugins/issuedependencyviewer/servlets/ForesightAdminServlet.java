@@ -36,12 +36,14 @@ public class ForesightAdminServlet extends HttpServlet {
 	  private final PluginSettingsFactory pluginSettingsFactory;
 	  private ConstantsManager constantsManager;
 
-	  public ForesightAdminServlet(UserManager userManager, LoginUriProvider loginUriProvider, TemplateRenderer renderer, PluginSettingsFactory pluginSettingsFactory)
+	  public ForesightAdminServlet(UserManager userManager, LoginUriProvider loginUriProvider, 
+	  TemplateRenderer renderer, PluginSettingsFactory pluginSettingsFactory, ConstantsManager constantsManager)
 	  {
 	    this.userManager = userManager;
 	    this.loginUriProvider = loginUriProvider;
 	    this.renderer = renderer;
 	    this.pluginSettingsFactory = pluginSettingsFactory;
+	    this.constantsManager = constantsManager;
 	  }
 	
 	  @Override

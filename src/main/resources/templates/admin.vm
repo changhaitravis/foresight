@@ -16,6 +16,7 @@
              <label for="color">Color:</label>
              <input type="text" id="color" name="color" class="text" value="$context[$issueType]"/>
         </div>
+        
     #end
         <div class="field-group">
             <input type="submit" value="Save" class="button"/>
