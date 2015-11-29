@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Foresight Admin</title>
+    <meta name="decorator" content="atl.admin">
+  </head>
+  <body>
+    <form id="admin" class="aui" action="" method="POST">
+    
+    #foreach ($issueType in $context.keySet())
+	
+        <div class="field-group">
+             <label for="IssueType">IssueType:</label>
+             $issueType
+        </div>
+        <div class="field-group">
+             <label for="color">Color:</label>
+             <input type="text" id="color" name="color" class="text" value="$context[$issueType]"/>
+        </div>
+    #end
+        <div class="field-group">
+            <input type="submit" value="Save" class="button"/>
+        </div>
+    </form>
+  </body>
+</html>
