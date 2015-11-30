@@ -58,26 +58,16 @@ public class ForesightAdminServlet extends HttpServlet {
 		    }
 		    
 		    //Map objects
-		    Map<String, Object> context = Maps.newHashMap();
 		    
 		    List<IssueType> allIssueTypes = new ArrayList<IssueType>(constantsManager.getAllIssueTypeObjects());
-		    
 		    PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
-		    
-			for (IssueType currentIssueType : allIssueTypes) {
-				String currentIssueTypeName = currentIssueType.getName();
-				if (pluginSettings.get(PLUGIN_STORAGE_KEY) == null){
-					String noColor = JiraDefaultIssueTypes.fromJiraName(currentIssueTypeName).getColorCode();
-					pluginSettings.put(PLUGIN_STORAGE_KEY + "." + currentIssueTypeName, noColor);
-				}
-				context.put(currentIssueTypeName, pluginSettings.get(PLUGIN_STORAGE_KEY + "." + currentIssueTypeName));
-			}
+		    Map<String, Object> context = issueColorMap(allIssueTypes, pluginSettings);
+			
+			//End Map objects
 		    
 			Map<String, Object> VContext = Maps.newHashMap();
 			VContext.put("context", context);
 			
-			//End Map objects
-		    
 		    response.setContentType("text/html;charset=utf-8");
 		    renderer.render("templates/admin.vm", VContext , response.getWriter());
 	  }
@@ -91,9 +81,32 @@ public class ForesightAdminServlet extends HttpServlet {
 				String currentIssueTypeName = currentIssueType.getName();
 				pluginSettings.put(PLUGIN_STORAGE_KEY + "." + currentIssueTypeName, req.getParameter(currentIssueTypeName));
 			}
-			response.sendRedirect("test");
+//		    Map<String, Object> context = issueColorMap(allIssueTypes, pluginSettings);
+//			response.setContentType("text/html;charset=utf-8");
+//			Map<String, Object> VContext = Maps.newHashMap();
+//			VContext.put("context", context);
+//			VContext.put("success", "It seems your settings have been successfully saved");
+//		    renderer.render("templates/admin.vm", VContext , response.getWriter());
+			response.sendRedirect("foresight-admin");
 	  }
 
+	  private Map<String, Object> issueColorMap(List<IssueType> allIssueTypes, PluginSettings pluginSettings){
+		  
+		    //Map objects
+		    Map<String, Object> context = Maps.newHashMap();
+		    
+			for (IssueType currentIssueType : allIssueTypes) {
+				String currentIssueTypeName = currentIssueType.getName();
+				if (pluginSettings.get(PLUGIN_STORAGE_KEY + "." + currentIssueTypeName) == null){
+					String noColor = JiraDefaultIssueTypes.fromJiraName(currentIssueTypeName).getColorCode();
+					pluginSettings.put(PLUGIN_STORAGE_KEY + "." + currentIssueTypeName, noColor);
+				}
+				context.put(currentIssueTypeName, pluginSettings.get(PLUGIN_STORAGE_KEY + "." + currentIssueTypeName));
+			}
+			
+			//End Map objects
+		    return context;
+	  }
 	  
 	  private void redirectToLogin(HttpServletRequest request, HttpServletResponse response) throws IOException
 	  {

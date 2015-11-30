@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.appbox.jira</groupId>
     <artifactId>foresight</artifactId>
-    <version>0.9.3-jira6</version>
+    <version>1.0-jira6</version>
     <organization>
         <name>Solutions Appbox inc.</name>
         <url>http://www.appbox.ca/</url>

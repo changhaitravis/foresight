@@ -4,8 +4,12 @@
     <meta name="decorator" content="atl.admin">
   </head>
   <body>
+  
+  	#if($success)
+  		$success
+  	#end
+  
     <form id="admin" class="aui" action="" method="POST">
-    
     #foreach ($issueType in $context.keySet())
 	
         <div class="field-group">
@@ -14,7 +18,7 @@
         </div>
         <div class="field-group">
              <label for="color">Color:</label>
-             <input type="text" id="color" name="color" class="text" value="$context.get($issueType)"/>
+             <input type="text" id="color" name="$issueType" class="text" value="$context.get($issueType)"/>
         </div>
         
     #end
