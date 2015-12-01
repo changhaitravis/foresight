@@ -24,3 +24,28 @@
 	<div id="issue-dependency-viewer-graph-container"></div>
 	<canvas id="foresight-legend" width="848" height="200"></canvas>
 </div>
+<script>
+AJS.toInit(function(){
+	AJS.$(document).ready(function(){
+	  //TODO Better way of determining viewType
+		if(JIRA.API !== undefined){
+		  if(JIRA.API.IssueSearch !== undefined && JIRA.ViewIssueTabs !== undefined){
+		    //issue navigator
+		  viewType = 'issueNav';
+		  foresight_show_onTabReady();
+		  }else if(JIRA.API.Projects !== undefined){
+		  //project tab
+		    viewType = 'projectTab';
+		    AJS.$('input#includeOutward, input#includeInward').parent().hide();
+		    foresight_show();
+		  }
+		}else if(JIRA.Issue !== undefined){
+		  //issue view
+		    viewType = 'issue';
+		    foresight_show();
+		    foresight_show_onTabReady();
+		}
+		
+	});
+});
+</script>
