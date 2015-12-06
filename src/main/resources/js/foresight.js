@@ -302,37 +302,40 @@ function show_legend(){
 	}
 }
 
-AJS.toInit(function(){
-	AJS.$(document).ready(function(){
-	  //TODO Better way of determining viewType
-		if(JIRA.API !== undefined){
-		  if(JIRA.API.IssueSearch !== undefined && JIRA.ViewIssueTabs !== undefined){
-		    //issue navigator
-		  viewType = 'issueNav';
-		  //JIRA.ViewIssueTabs.onTabReady(function() {
-		  JIRA.ViewIssueTabs.onTabReady(function() {
-			      //run foresight_show if this is the first time loading an issue, or loading a new issue.
-			    if(AJS.$('div#foresight, canvas#foresight-legend').length == 2){
-				    foresight_show();
-			      }
-			});
-		  }else if(JIRA.API.Projects !== undefined){
-		  //project tab
-		    viewType = 'projectTab';
-		    AJS.$('input#includeOutward, input#includeInward').parent().hide();
+//AJS.toInit(function(){
+//	AJS.$(document).ready(function(){
+//	  //TODO Better way of determining viewType
+//		if(JIRA.API !== undefined){
+//		  if(JIRA.API.IssueSearch !== undefined && JIRA.ViewIssueTabs !== undefined){
+//		    //issue navigator
+//		  viewType = 'issueNav';
+//		  foresight_show_onTabReady();
+//		  }else if(JIRA.API.Projects !== undefined){
+//		  //project tab
+//		    viewType = 'projectTab';
+//		    AJS.$('input#includeOutward, input#includeInward').parent().hide();
+//		    foresight_show();
+//		  }
+//		}else if(JIRA.Issue !== undefined){
+//		  //issue view
+//		    viewType = 'issue';
+//		    foresight_show();
+//		    foresight_show_onTabReady();
+//		}
+//		
+//	});
+//});
+
+function foresight_show_onTabReady(){
+	JIRA.ViewIssueTabs.onTabReady(function() {
+	      //run foresight_show if this is the first time loading an issue, or loading a new issue.
+	    if(AJS.$('div#foresight, canvas#foresight-legend').length == 2){
 		    foresight_show();
-		  }
-		}else if(JIRA.Issue !== undefined){
-		  //issue view
-		    viewType = 'issue';
-		    foresight_show();
-		}
-		
+	      }
 	});
-});
+}
 
 function foresight_show(){
-  
 	if(!pluginSettings){
 	  init_plugin_settings();
 	}else{
