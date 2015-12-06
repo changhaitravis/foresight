@@ -13,6 +13,7 @@ import ca.appbox.jira.plugins.issuedependencyviewer.servlets.response.SettingsRe
 import ca.appbox.jira.plugins.issuedependencyviewer.settings.ForesightSettings;
 
 import com.atlassian.jira.config.ConstantsManager;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 
 /**
  * Servlet that handles the plugin settings.
@@ -24,17 +25,19 @@ public class ForesightSettingsServlet extends HttpServlet {
 	private static final long serialVersionUID = -4486823641817126268L;
 	
 	private ConstantsManager constantsManager;
+	private final PluginSettingsFactory pluginSettingsFactory;
 
-	public ForesightSettingsServlet(ConstantsManager constantsManager) {
+	public ForesightSettingsServlet(ConstantsManager constantsManager, PluginSettingsFactory pluginSettingsFactory) {
 		super();
 		this.constantsManager = constantsManager;
+		this.pluginSettingsFactory = pluginSettingsFactory;
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		ForesightSettings pluginSettings = new ForesightSettings(constantsManager);
+		ForesightSettings pluginSettings = new ForesightSettings(constantsManager, pluginSettingsFactory);
 		
 		// output the response
 		String graphResponse = new SettingsResponseBuilder().toJson(pluginSettings);
