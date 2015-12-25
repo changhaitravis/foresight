@@ -71,13 +71,15 @@ function show_graph() {
 		
 		height = height + heightGrowth;
 		
+		var width = 1000;
+		
 		// clean up old svg object
 		d3.select("#issue-dependency-viewer-graph").remove();
 		var container = d3.select('#issue-dependency-viewer-graph-container');
 		  
 		var svg = container.append('svg:svg')
 			.attr("id", "issue-dependency-viewer-graph")
-			.attr("width", 1000)
+			.attr("width", width)
 			.attr("height", height);
 		  
 		
@@ -122,6 +124,11 @@ function show_graph() {
 
 	    function dragend(d, i) {
 	        d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+	        //confine the X and Y coordinates to the bounds of the graph
+	        d.x = Math.max(7, Math.min(width - 7, d.x));
+                d.px = d.x
+                d.y = Math.max(7, Math.min(height - 7, d.y));
+                d.py = d.y
 	        tick();
 	        force.resume();
 	    }
@@ -250,6 +257,10 @@ function show_graph() {
 		    	}
 		    });
 
+                    
+                var line = svg.selectAll("line")
+                    .data(graph.links)
+                    .enter().append("line");
 		
 		update_description_types();
 		
@@ -265,15 +276,23 @@ function show_graph() {
 		  circle.attr("transform", function(d) {
 		    return "translate(" + d.x + "," + d.y + ")";
 		  });
+                  
+//                   circle.attr("cx", function(d) { return d.x = Math.max(7, Math.min(width - 7, d.x)); })
+//   			.attr("cy", function(d) { return d.y = Math.max(7, Math.min(height - 7, d.y)); });
 
 		  text.attr("transform", function(d) {
 		    return "translate(" + d.x + "," + d.y + ")";
 		  });
 		  
 		  labels.attr("x", function(d) { return (d.source.x + d.target.x) / 2; }) 
-	        .attr("y", function(d) { return (d.source.y + d.target.y) / 2; }) 
-		}
-  });
+	        .attr("y", function(d) { return (d.source.y + d.target.y) / 2; });
+
+// 		line.attr("x1", function(d) { return d.source.x; })
+//     		.attr("y1", function(d) { return d.source.y; })
+//     		.attr("x2", function(d) { return d.target.x; })
+//     		.attr("y2", function(d) { return d.target.y; });
+ 		}	
+	});
 }
 
 function show_legend(){
