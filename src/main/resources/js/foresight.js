@@ -66,12 +66,15 @@ function show_graph() {
 		
 		var graph = JSON.parse(data);
 		
-		var height = 400;
-		var heightGrowth = (graph.nodes.length + graph.links.length) * 5;
+                var radius = 7;
+                
+		//var height = 400;
+                //Aggregate of total graph diameters
+		var height = Math.max(400, (graph.nodes.length) * radius * 2);
 		
-		height = height + heightGrowth;
+		//height = height + heightGrowth;
 		
-		var width = 1000;
+		var width = Math.max(1000, height);
 		
 		// clean up old svg object
 		d3.select("#issue-dependency-viewer-graph").remove();
@@ -97,7 +100,7 @@ function show_graph() {
 		var force = d3.layout.force()
 		    .nodes(nodes)
 		    .links(links)
-		    .size([1000, height])
+		    .size([width, height])
 		    .linkDistance(120)
 		    .charge(-150)
 		    .gravity(.05)
@@ -125,9 +128,9 @@ function show_graph() {
 	    function dragend(d, i) {
 	        d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
 	        //confine the X and Y coordinates to the bounds of the graph
-	        d.x = Math.max(7, Math.min(width - 7, d.x));
+	        d.x = Math.max(radius, Math.min(width - radius, d.x));
                 d.px = d.x
-                d.y = Math.max(7, Math.min(height - 7, d.y));
+                d.y = Math.max(radius, Math.min(height - radius, d.y));
                 d.py = d.y
 	        tick();
 	        force.resume();
@@ -201,9 +204,9 @@ function show_graph() {
 		    .attr("r", function(d){
 		    	//Make the circle bigger if the it's the issue whose browse context it is.
 		    	if (issue_id == d.key) {
-	    			return 14;
+	    			return radius * 2;
 	    		}else{
-	    			return 7;
+	    			return radius;
 	    		}
 		    })
 		    .call(node_drag);
