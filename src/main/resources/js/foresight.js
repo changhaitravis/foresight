@@ -62,19 +62,38 @@ function show_graph() {
 		
 		if(data == undefined || data == ""){
 			return;
-		}
+		}		
 		
 		var graph = JSON.parse(data);
 		
                 var radius = 7;
                 
+                var resolutions = {
+                    50:{w: 800, h: 600}, 
+                    100:{w: 1024, h: 768}, 
+                    150:{w:1400, h:1050}, 
+                    200:{w:1600, h:1200}, 
+                    250:{w:2048, h:1536},
+                    500:{w:2560, h:2048},
+                    750:{w:3200, h:2400},
+                    1000:{w:4096, h:3072}
+                };
+                
+                var optimalRes;
+                
+                for (res in resolutions){
+                    if (!optimalRes || (graph.nodes.length <= res && res > optimalRes)){
+                        optimalRes = resolutions[res];
+                    }
+                }
+                
 		//var height = 400;
                 //Aggregate of total graph diameters
-		var height = Math.max(400, (graph.nodes.length) * radius * 2);
+		var height = optimalRes.h;
 		
 		//height = height + heightGrowth;
 		
-		var width = Math.max(1000, height);
+		var width = optimalRes.w;
 		
 		// clean up old svg object
 		d3.select("#issue-dependency-viewer-graph").remove();
@@ -82,9 +101,10 @@ function show_graph() {
 		  
 		var svg = container.append('svg:svg')
 			.attr("id", "issue-dependency-viewer-graph")
-			.attr("width", width)
-			.attr("height", height);
-		  
+			//.attr("width", width)
+			//.attr("height", height);
+                        .attr("viewBox", "0 0 " + width + " " + height)
+                        .attr("preserveAspectRatio", "xMidYMid meet");
 		
 			
 		var links = graph.links;
@@ -103,7 +123,7 @@ function show_graph() {
 		    .size([width, height])
 		    .linkDistance(120)
 		    .charge(-150)
-		    .gravity(.05)
+		    .gravity(.1)
 		    .distance(100)
 		    .on("tick", tick)
 		    .start();
