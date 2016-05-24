@@ -65,24 +65,28 @@ function show_graph() {
 		}		
 		
 		var graph = JSON.parse(data);
+                
+                //use this dummy function and enable it to mock up dummy graphs for testing viewport
+                //generate_dummy_nodes(graph, 999);
 		
                 var radius = 7;
                 
                 var resolutions = {
-                    50:{w: 800, h: 600}, 
-                    100:{w: 1024, h: 768}, 
-                    150:{w:1400, h:1050}, 
-                    200:{w:1600, h:1200}, 
-                    250:{w:2048, h:1536},
-                    500:{w:2560, h:2048},
-                    750:{w:3200, h:2400},
-                    1000:{w:4096, h:3072}
+                    0: {w: 640, h: 640},
+                    50:{w: 800, h: 800}, 
+                    100:{w: 1024, h: 1024}, 
+                    150:{w:1400, h:1400}, 
+                    250:{w:1600, h:1600}, 
+                    375:{w:2048, h:2048},
+                    750:{w:2560, h:2560},
+                    1250:{w:3200, h:3200},
+                    2500:{w:4096, h:4096}
                 };
                 
                 var optimalRes;
                 
                 for (res in resolutions){
-                    if (!optimalRes || (graph.nodes.length <= res && res > optimalRes)){
+                    if (!optimalRes || graph.nodes.length >= res){
                         optimalRes = resolutions[res];
                     }
                 }
@@ -402,3 +406,19 @@ function foresight_show(){
 		update_description_types();
 	});
 }
+
+/**
+ * Function for generating dummy nodes to test viewport
+ */
+// function generate_dummy_nodes(graph, number){
+//                 var i;
+//                 while (graph.nodes.length < number){
+//                     graph.nodes.push({
+//                         key: i,
+//                         name: "lolz"
+//                     });
+//                     i++
+//                     
+//                     graph.nodeIndex[i] = graph.nodes.length;
+//                 }
+// }
