@@ -20,7 +20,9 @@ The following features should bring it to parity with Vivid Trace
 - Hide (or maybe 'grey out') Completed 'Sets' Switch
 - User Configuration JIRA Default Issue Type colors.
 
+### JIRA 7 specific features to be implemented.
+Read Issue Type colors from JIRA Software, instead of from the plugin settings.
+
 ## Version Support
 Because of when the fork was made, I've removed support for JIRA 4.x.x and JIRA 5.x.x
-Currently the build is targetting JIRA 6.4, but I'm open to keeping it compatible with the entire JIRA 6.x range.
-
+Currently Only Jira 6.4 and Jira 7.1 are supported. However, the entirety of Jira 6 & 7 likely work
