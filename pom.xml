@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.appbox.jira</groupId>
     <artifactId>foresight</artifactId>
-    <version>1.0-jira6</version>
+    <version>1.0-jira7</version>
+    
     <organization>
         <name>Solutions Appbox inc.</name>
         <url>http://www.appbox.ca/</url>
     </organization>
+    
     <name>Foresight</name>
     <description>Issue dependency visualization plugin for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
+    
     <dependencies>
         <dependency>
             <groupId>com.atlassian.jira</groupId>
@@ -48,6 +54,7 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
+        
         <!-- WIRED TEST RUNNER DEPENDENCIES -->
         <dependency>
             <groupId>com.atlassian.plugins</groupId>
@@ -62,6 +69,7 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    
     <build>
         <plugins>
             <plugin>
@@ -72,9 +80,14 @@
                 <configuration>
                     <productVersion>${jira.version}</productVersion>
                     <productDataVersion>${jira.version}</productDataVersion>
-                    <systemPropertyVariables>
-                        <fastdev.mvn.command>atlas-mvn</fastdev.mvn.command>
-                    </systemPropertyVariables>
+                    <applications>
+			            <application>
+			                <applicationKey>jira-software</applicationKey>
+			                <version>${jira.software.application.version}</version>
+			            </application>
+			        </applications>
+			        <enableQuickReload>true</enableQuickReload>
+                    <enableFastdev>false</enableFastdev>
                 </configuration>
             </plugin>
             <plugin>
@@ -87,8 +100,10 @@
             </plugin>
         </plugins>
     </build>
+    
     <properties>
-        <jira.version>6.4.4</jira.version>
+        <jira.version>7.1.9</jira.version>
+        <jira.software.application.version>7.1.9</jira.software.application.version>
         <amps.version>6.2.4</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
         <testkit.version>6.3.11</testkit.version>

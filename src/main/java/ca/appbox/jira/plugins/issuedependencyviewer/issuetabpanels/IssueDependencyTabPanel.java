@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.atlassian.crowd.embedded.api.User;
 import com.atlassian.jira.issue.Issue;
-import com.atlassian.jira.plugin.issuetabpanel.AbstractIssueTabPanel;
+import com.atlassian.jira.plugin.issuetabpanel.AbstractIssueTabPanel3;
+import com.atlassian.jira.plugin.issuetabpanel.GetActionsRequest;
 import com.atlassian.jira.plugin.issuetabpanel.IssueAction;
+import com.atlassian.jira.plugin.issuetabpanel.IssueTabPanel3;
 import com.atlassian.jira.plugin.issuetabpanel.IssueTabPanelModuleDescriptor;
-//import com.atlassian.jira.project.browse.BrowseContext;
+import com.atlassian.jira.plugin.issuetabpanel.ShowPanelRequest;
 
 /**
  * Manages the issue tab panel for viewing dependencies between issues.
  * 
  * @author Jean Arcand
  */
-public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
+public final class IssueDependencyTabPanel extends AbstractIssueTabPanel3 implements IssueTabPanel3{
 
 	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "dependency-graph-panel.vm";
 
@@ -25,10 +26,9 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 	public IssueDependencyTabPanel() {
 		super();
 	}
-
 	@Override
-	public List<IssueAction> getActions(Issue currentIssue, User currentUser) {
-		final Issue issue = currentIssue;
+	public List<IssueAction> getActions(GetActionsRequest request) {
+		final Issue issue = request.issue();
 		final List<IssueAction> actions = new ArrayList<IssueAction>();
 		actions.add(new IssueAction() {
 			
@@ -55,9 +55,11 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel {
 	public void init(IssueTabPanelModuleDescriptor issueTabPanelModuleDescriptor) {
 		this.issueTabPanelModuleDescriptor = issueTabPanelModuleDescriptor;
 	}
-
+	
 	@Override
-	public boolean showPanel(Issue currentIssue, User currentUser) {
+	public boolean showPanel(ShowPanelRequest arg0) {
+		// TODO Auto-generated method stub
 		return true;
 	}
+
 }
