@@ -43,7 +43,7 @@ function show_graph() {
 	  case 'projectTab':
 	      project_id = JIRA.API.Projects.getCurrentProjectId();
 	      break;
-	  case 'issue':
+	  case 'issue':rogue 
 	      issue_id = JIRA.Issue.getIssueId();
 	      break;
 	}
@@ -213,7 +213,7 @@ function show_graph() {
 			.attr("xlink:href", function(d){
 				return contextPath + "/browse/" + d.name;
 			})
-		    
+		    .attr("xlink:target", "_blank")
 		    .append("svg:circle")
 		    .attr("class", function(d) { if (d.status == 'Resolved' || d.status == 'Closed' || d.status == 'Done') { return "foresight-circle foresight-resolved" }
 		    else {return "foresight-circle"} })

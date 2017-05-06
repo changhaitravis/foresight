@@ -8,7 +8,7 @@ import com.atlassian.jira.project.browse.BrowseContext;
 
 public final class IssueDependencyProjectPanel extends AbstractProjectTabPanel implements ProjectTabPanel{
 	
-	private static final String PROJECT_PANEL_VELOCITY_TEMPLATE = "dependency-graph-panel.vm";
+	private static final String PROJECT_PANEL_VELOCITY_TEMPLATE = "project-dependency-graph-panel.vm";
 	private ProjectTabPanelModuleDescriptor ProjectTabPanelModuleDescriptor;
 	
 	public IssueDependencyProjectPanel() {

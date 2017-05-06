@@ -19,7 +19,7 @@ import com.atlassian.jira.plugin.issuetabpanel.ShowPanelRequest;
  */
 public final class IssueDependencyTabPanel extends AbstractIssueTabPanel3 implements IssueTabPanel3{
 
-	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "dependency-graph-panel.vm";
+	private static final String ISSUE_TAB_PANEL_VELOCITY_TEMPLATE = "issue-dependency-graph-panel.vm";
 
 	private IssueTabPanelModuleDescriptor issueTabPanelModuleDescriptor;
 	
@@ -44,8 +44,8 @@ public final class IssueDependencyTabPanel extends AbstractIssueTabPanel3 implem
 			
 			@Override
 			public String getHtml() {
-				String issueHtml = "<input class=\"hidden\" name=\"issueId\" value=\"" + issue.getId() + "\"/>";
-				return issueHtml + issueTabPanelModuleDescriptor.getHtml(ISSUE_TAB_PANEL_VELOCITY_TEMPLATE);
+				//String issueHtml = "<input class=\"hidden\" name=\"issueId\" value=\"" + issue.getId() + "\"/>";
+				return issueTabPanelModuleDescriptor.getHtml(ISSUE_TAB_PANEL_VELOCITY_TEMPLATE);
 			}
 		});
 		return actions;

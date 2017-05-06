@@ -55,13 +55,13 @@
 		key="foresight-dependency-graph-issue-panel"
 		class="ca.appbox.jira.plugins.issuedependencyviewer.issuetabpanels.IssueDependencyTabPanel">
 		<label key="ca.appbox.jira.plugins.issuedependencyviewer.issue_tab_title" />
-		<resource type="velocity" name="dependency-graph-panel.vm" location="/templates/dependency-graph-panel.vm" />
+		<resource type="velocity" name="issue-dependency-graph-panel.vm" location="/templates/dependency-graph-panel.vm" />
 	</issue-tabpanel>
 	
 	<project-tabpanel name="Foresight Dependency Viewer Tab" key="foresight-dependency-graph-project-panel"
 	class="ca.appbox.jira.plugins.issuedependencyviewer.projectpanels.IssueDependencyProjectPanel">
 		<label key="ca.appbox.jira.plugins.issuedependencyviewer.project_tab_title" />
-		<resource type="velocity" name="dependency-graph-panel.vm" location="/templates/dependency-graph-panel.vm" />
+		<resource type="velocity" name="project-dependency-graph-panel.vm" location="/templates/dependency-graph-panel.vm" />
 	</project-tabpanel>
 	
 </atlassian-plugin>
